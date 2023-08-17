@@ -16,6 +16,7 @@ abstract class BaseController
 
         // includes the file if exists
         $arquivo = dirname(__DIR__)."/views/$view.php";
+            
         if(file_exists($arquivo)){
             require_once $arquivo;
         } else {

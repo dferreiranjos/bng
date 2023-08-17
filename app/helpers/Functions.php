@@ -1,7 +1,9 @@
 <?php
 
-function teste(){
-    echo 'estou na helper';
+function check_session()
+{
+    // check if there is an active session
+    return isset($_SESSION['user']);
 }
 
 function dd($data, $die = true)

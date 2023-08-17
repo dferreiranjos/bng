@@ -4,13 +4,13 @@
             <div class="card p-4">
 
                 <div class="d-flex align-items-center justify-content-center my-4">
-                    <img src="assets/images/logo_64.png" class="img-fluid me-3">
+                    <img src="public/assets/images/logo_64.png" class="img-fluid me-3">
                     <h2><strong><?= APP_NAME ?></strong></h2>
                 </div>
 
                 <div class="row justify-content-center">
                     <div class="col-8">
-                        <form action="#" method="post">
+                        <form action="main/login_submit" method="post" novalidate>
                             <div class="mb-3">
                                 <label for="text_username" class="form-label">Utilizador</label>
                                 <input type="email" name="text_username" id="text_username" value="" class="form-control" required>
@@ -28,7 +28,13 @@
                             </div>
 
                             <div class="alert alert-danger p-2 text-center">
-                                [mensagem de erro]
+                                <?php if(!empty($validation_errors)): ?>
+                                    <div class="alert alert-danger p-2 text-center">
+                                        <?php foreach($validation_errors as $error): ?>
+                                            <div><?= $error?></div>
+                                        <?php endforeach;?>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </form>
                     </div>
