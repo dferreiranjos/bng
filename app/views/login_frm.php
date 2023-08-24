@@ -10,7 +10,7 @@
 
                 <div class="row justify-content-center">
                     <div class="col-8">
-                        <form action="main/login_submit" method="post" novalidate>
+                        <form action="<?= CONF_URL_BASE ?>main/login_submit" method="post" novalidate>
                             <div class="mb-3">
                                 <label for="text_username" class="form-label">Utilizador</label>
                                 <input type="email" name="text_username" id="text_username" value="" class="form-control" required>
@@ -27,15 +27,14 @@
                                 <a href="#">Esqueci-me da password!</a>
                             </div>
 
-                            <div class="alert alert-danger p-2 text-center">
-                                <?php if(!empty($validation_errors)): ?>
-                                    <div class="alert alert-danger p-2 text-center">
-                                        <?php foreach($validation_errors as $error): ?>
-                                            <div><?= $error?></div>
-                                        <?php endforeach;?>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
+                            <?php if(!empty($validation_errors)): ?>
+                                <div class="alert alert-danger p-2 text-center">
+                                    <?php foreach($validation_errors as $error): ?>
+                                        <div><?= $error?></div>
+                                    <?php endforeach;?>
+                                </div>
+                            <?php endif; ?>
+                            
                         </form>
                     </div>
                 </div>

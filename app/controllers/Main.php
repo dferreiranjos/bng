@@ -7,8 +7,10 @@ use app\Models\Agents;
 
 class Main extends BaseController
 {
+    
     public function index()
     {
+        
         // verifica se não há usuário logado
         if (!check_session()){
             
@@ -24,20 +26,21 @@ class Main extends BaseController
     // Login
     public function login_frm()
     {
-        
+    
         // verifica se não há usuário logado
+        
         if (check_session()){
             $this->index();
             return;
         }
-
+        
         // Verifica se há erros depois de submeter o login
         $data = [];
         if(!empty($_SESSION['validation_errors'])){
             $data['validation_errors'] = $_SESSION['validation_errors'];
             unset($_SESSION['validation_errors']);
         }
-
+    
         // Views
         $this->view('layouts/html_header');
         $this->view('login_frm', $data);
@@ -48,25 +51,28 @@ class Main extends BaseController
     public function login_submit()
     {
         
-         // verifica se não há usuário logado
-         if (check_session()){
+        // verifica se não há usuário logado
+        if (check_session()){
             $this->index();
             return;
         }
 
+        
         if($_SERVER['REQUEST_METHOD'] != 'POST'){
             $this->index();
             return;
         }
 
-        $validation_erros = [];
+        
+        $validation_errors = [];
+       
         if(empty($_POST['text_username']) || empty($_POST['text_password'])){
-            $validation_erros[] = 'Username e password são obrigatórios';
+            $validation_errors[] = 'Username e password são obrigatórios';
         }
 
-        if(!empty($validation_erros)){
+        if(!empty($validation_errors)){
             
-            $_SERVER['validation_erros'] = $validation_erros;
+            $_SESSION['validation_errors'] = $validation_errors;
             $this->login_frm();
             return;
         }
